@@ -1,11 +1,20 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const passport = require('passport');
+//passport config
+require('./config/passport')(passport);
+
+//loads routes
+const auth = require('./routes/auth');
 
 const app = express();
 
 app.get('/',(req,res)=>{
     res.send('Its work');
 }); 
+
+//uses routes
+app.use('/auth',auth);
 
 const port = process.env.PORT || 3000;
 
