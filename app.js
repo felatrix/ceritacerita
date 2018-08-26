@@ -16,9 +16,11 @@ const auth = require('./routes/auth');
 const index = require('./routes/index');
 
 
-//load mongoose keys
+//load keys
 const keys = require('./config/keys');
 
+//mogoose global promis
+mongoose.Promise = global.Promise;
 //mongoose connect
 mongoose.connect(keys.mongoURI,{
     useMongoClient:true
@@ -60,4 +62,4 @@ const port = process.env.PORT || 3000;
 app.listen(port,
 ()=>{
     console.log(`server running on  ${port}` );
-})
+});
