@@ -11,6 +11,7 @@ const passport = require('passport');
 //load user model
 require('./models/User');
 require('./models/Story');
+
 //passport config
 require('./config/passport')(passport);
 
@@ -19,6 +20,11 @@ const auth = require('./routes/auth');
 const index = require('./routes/index');
 const stories = require('./routes/stories');
 
+//handlebars helpers
+const {
+    truncate,
+    stripTags 
+} = require('./helpers/hbs');
 
 //load keys
 const keys = require('./config/keys');
@@ -44,6 +50,10 @@ app.use(bodyParser.json())
 
 //handlebars middleware
 app.engine('handlebars',exphbs({
+    helpers:{
+        truncate:truncate,
+        stripTags:stripTags
+    },
     defaultLayout:'main'
 })
 );

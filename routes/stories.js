@@ -14,7 +14,6 @@ router.get('/',(req,res)=>{
             stories:stories
         });
     } );
-    res.render('stories/index');
 });
 //add story form 
 router.get('/add',ensureAuthenticated,(req,res)=>{
